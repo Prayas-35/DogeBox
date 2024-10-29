@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { WagmiProvider } from "wagmi";
+import Providers from "./provider";
+// import { ThemeProvider } from "@/components/theme/theme-provider";
 
 export const metadata: Metadata = {
   title: "AIA2.0",
@@ -9,12 +10,22 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={` antialiased`}></body>
+      <head>
+        <link rel="icon" href="/logo1.png" />
+      </head>
+      <body className={`antialiased`}>
+        {/* <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        > */}
+          <Providers>{children}</Providers>
+        {/* </ThemeProvider> */}
+      </body>
     </html>
   );
 }

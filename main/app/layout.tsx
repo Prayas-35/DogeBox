@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Providers from "./provider";
-// import { ThemeProvider } from "@/components/theme/theme-provider";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 
 export const metadata: Metadata = {
   title: "AIA2.0",
@@ -17,14 +17,14 @@ export default function RootLayout({
         <link rel="icon" href="/logo1.png" />
       </head>
       <body className={`antialiased`}>
-        {/* <ThemeProvider
+        <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
-        > */}
+        >
           <Providers>{children}</Providers>
-        {/* </ThemeProvider> */}
+        </ThemeProvider>
       </body>
     </html>
   );

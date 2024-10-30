@@ -1,14 +1,16 @@
+"use client";
+
 import React from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
-import { ModeToggle } from "@/components/theme/theme-switcher";
+// import { ModeToggle } from "@/components/theme/theme-switcher";
 
 const Landing = () => {
   return (
     <div>
-      <ModeToggle />
+      {/* <ModeToggle /> */}
       <BackgroundGradientAnimation>
-        <div className="absolute z-50">
+        <div className="z-50">
           <ConnectButton />
         </div>
         <div className="absolute z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center md:text-4xl lg:text-7xl">

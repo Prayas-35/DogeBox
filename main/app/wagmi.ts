@@ -1,3 +1,5 @@
+"use client";
+
 import { http, cookieStorage, createConfig, createStorage } from "wagmi";
 import { mainnet, sepolia, polygonAmoy, baseSepolia } from "wagmi/chains";
 import { connectorsForWallets } from "@rainbow-me/rainbowkit";

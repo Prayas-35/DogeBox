@@ -8,8 +8,11 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import "dotenv/config";
 import { useWriteContract, useAccount } from 'wagmi'
+import abi, { address } from '../abi'
 
 const JWT = process.env.NEXT_PUBLIC_PINATA_JWT;
+const contractAddress = address;
+const contractABI = abi;
 // console.log("JWT:", JWT);
 async function pinFileToIPFS(file: any) {
     try {
@@ -37,6 +40,9 @@ export default function LockYourMeme() {
     const [unlockTime, setUnlockTime] = useState("");
     const [isUploading, setIsUploading] = useState(false);
 
+    const account = useAccount();
+    const { data: hash, writeContractAsync, isPending } = useWriteContract()
+
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         if (!file) return;
@@ -45,7 +51,17 @@ export default function LockYourMeme() {
         const ipfsResponse = await pinFileToIPFS(file);
 
         if (ipfsResponse) {
+            const date = new Date("2024-11-15T17:30");
+            const unixTimestamp = Math.floor(date.getTime() / 1000);
+            console.log(unixTimestamp);
             console.log("File uploaded to IPFS:", ipfsResponse);
+
+            const tx = await writeContractAsync({
+                address: contractAddress,
+                abi: contractABI,
+                functionName: "mintMeme",
+                args: [account?.address, ipfsResponse.IpfsHash, unixTimestamp],
+            })
             // Further logic 
         } else {
             console.log("Failed to upload file to IPFS.");
@@ -80,8 +96,8 @@ export default function LockYourMeme() {
                             required
                         />
                     </div>
-                    <Button type="submit" disabled={isUploading}>
-                        {isUploading ? 'Uploading...' : 'Upload File'}
+                    <Button type="submit" disabled={isUploading || isPending}>
+                        {isUploading || isPending ? 'Uploading...' : 'Upload File'}
                     </Button>
                 </form>
             </CardContent>

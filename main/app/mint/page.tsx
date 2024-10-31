@@ -51,7 +51,7 @@ export default function LockYourMeme() {
         const ipfsResponse = await pinFileToIPFS(file);
 
         if (ipfsResponse) {
-            const date = new Date("2024-11-15T17:30");
+            const date = new Date(unlockTime);
             const unixTimestamp = Math.floor(date.getTime() / 1000);
             console.log(unixTimestamp);
             console.log("File uploaded to IPFS:", ipfsResponse);

@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import "dotenv/config";
-import { useWriteContract, useAccount } from 'wagmi'
+import { useWriteContract, useAccount, useWaitForTransactionReceipt } from 'wagmi'
 import abi, { address } from '../abi'
 
 const JWT = process.env.NEXT_PUBLIC_PINATA_JWT;
@@ -42,6 +42,11 @@ export default function LockYourMeme() {
 
     const account = useAccount();
     const { data: hash, writeContractAsync, isPending } = useWriteContract()
+
+    const { isLoading: isConfirming, isSuccess: isConfirmed } =
+    useWaitForTransactionReceipt({
+      hash,
+    })
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -96,8 +101,8 @@ export default function LockYourMeme() {
                             required
                         />
                     </div>
-                    <Button type="submit" disabled={isUploading || isPending}>
-                        {isUploading || isPending ? 'Uploading...' : 'Upload File'}
+                    <Button type="submit" disabled={isUploading || isPending || isConfirming}>
+                        {isUploading || isPending || isConfirming? 'Uploading...' : 'Upload File'}
                     </Button>
                 </form>
             </CardContent>

@@ -8,6 +8,7 @@ import Image from "next/image";
 import { FiX } from "react-icons/fi";
 import { LuMenuSquare } from "react-icons/lu";
 import { HiBarsArrowDown } from "react-icons/hi2";
+import { ModeToggle } from "../theme/theme-switcher";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -40,7 +41,9 @@ export default function Navbar() {
           {/* <Link href="/">
             <Image src="/logo1.png" alt="Nebula Logo" width={40} height={50} />
           </Link> */}
-          <span className="font-fredoka font-extrabold">MemeVault</span>
+          <span className="font-fredoka font-extrabold text-text dark:text-text">
+            MemeVault
+          </span>
         </div>
 
         {/* Hamburger Icon for Mobile */}
@@ -62,16 +65,14 @@ export default function Navbar() {
         >
           <NavLink href="/">Home</NavLink>
           <NavLink href="/mint">Mint Meme</NavLink>
-          {isConnected && (
-            <NavLink href="/collections">My NFTs</NavLink>
-          )}
+          {isConnected && <NavLink href="/collections">My NFTs</NavLink>}
           <NavLink href="/gallery">Gallery</NavLink>
           <NavLink href="/about">About</NavLink>
         </div>
 
         {/* Connect Button and ModeToggle (Always Visible) */}
         <div className="flex items-center gap-1 md:gap-3">
-          {/* <ModeToggle /> */}
+          <ModeToggle />
           <ConnectButton
             label="Connect Wallet"
             accountStatus="avatar"
@@ -93,7 +94,7 @@ function NavLink({
   return (
     <Link
       href={href}
-      className="text-text hover:text-primary px-3 py-2 rounded-md text-sm md:text-base font-bold font-fredoka transition-colors duration-200 text-center"
+      className="hover:text-primary px-3 py-2 rounded-md text-sm md:text-base font-bold font-fredoka transition-colors duration-200 text-center hover:underline hover:bg-primary/10 text-background-900"
     >
       {children}
     </Link>

@@ -32,7 +32,7 @@ contract MemeTimeCapsule is ERC721URIStorage {
         return tokenId;
     }
 
-    /*Getter Functions */
+    /* Getter Functions */
 
     // Function to get all unlocked memes as an array of Meme structs
     function getUnlockedMemes() public view returns (Meme[] memory) {
@@ -59,5 +59,25 @@ contract MemeTimeCapsule is ERC721URIStorage {
         }
 
         return unlockedMemes;
+    }
+
+    // Function to get all memes owned by a specific address
+    function getOwnedMemes(address owner) public view returns (Meme[] memory) {
+        uint256 ownedCount = balanceOf(owner);
+        uint256 memeCount = memeIds.length;
+
+        // Create an array to store the owned Meme structs
+        Meme[] memory ownedMemes = new Meme[](ownedCount);
+        uint256 index = 0;
+
+        // Populate the owned memes array
+        for (uint256 i = 0; i < memeCount; i++) {
+            if (ownerOf(memeIds[i]) == owner) {
+                ownedMemes[index] = memes[memeIds[i]];
+                index++;
+            }
+        }
+
+        return ownedMemes;
     }
 }

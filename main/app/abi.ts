@@ -271,6 +271,42 @@ const abi = [
         "type": "function"
     },
     {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "owner",
+                "type": "address"
+            }
+        ],
+        "name": "getOwnedMemes",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "uint256",
+                        "name": "id",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "ipfsHash",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "unlockTime",
+                        "type": "uint256"
+                    }
+                ],
+                "internalType": "struct MemeTimeCapsule.Meme[]",
+                "name": "",
+                "type": "tuple[]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
         "inputs": [],
         "name": "getUnlockedMemes",
         "outputs": [
@@ -578,7 +614,7 @@ const abi = [
     }
 ];
 
-const address = "0x707Ce7aEF315E0B26Ca88C26eAEF85E394d39dC3"
+const address = "0x0461fF715941C1502AB03Ddc4bbf47f41089ed57"
 
 export default abi;
 export { address }

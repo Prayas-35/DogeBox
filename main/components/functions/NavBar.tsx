@@ -29,7 +29,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-transparent backdrop-blur-md shadow-md"
           : "bg-transparent"
@@ -65,7 +65,7 @@ export default function Navbar() {
         >
           <NavLink href="/">Home</NavLink>
           <NavLink href="/mint">Mint Meme</NavLink>
-          {isConnected && <NavLink href="/collections">My NFTs</NavLink>}
+          {isConnected && <NavLink href="/collection">My NFTs</NavLink>}
           <NavLink href="/gallery">Gallery</NavLink>
           <NavLink href="/about">About</NavLink>
         </div>

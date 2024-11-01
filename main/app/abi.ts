@@ -614,7 +614,7 @@ const abi = [
     }
 ];
 
-const address = "0x0461fF715941C1502AB03Ddc4bbf47f41089ed57"
+const contractAddress = "0x0461fF715941C1502AB03Ddc4bbf47f41089ed57"
 
 export default abi;
-export { address }
+export { contractAddress };

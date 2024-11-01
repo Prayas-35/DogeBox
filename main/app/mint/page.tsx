@@ -8,10 +8,10 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import "dotenv/config";
 import { useWriteContract, useAccount, useWaitForTransactionReceipt } from 'wagmi'
-import abi, { address } from '../abi'
+import abi, { contractAddress } from '../abi'
+import Navbar from '@/components/functions/NavBar'
 
 const JWT = process.env.NEXT_PUBLIC_PINATA_JWT;
-const contractAddress = address;
 const contractABI = abi;
 // console.log("JWT:", JWT);
 async function pinFileToIPFS(file: any) {
@@ -44,9 +44,9 @@ export default function LockYourMeme() {
     const { data: hash, writeContractAsync, isPending } = useWriteContract()
 
     const { isLoading: isConfirming, isSuccess: isConfirmed } =
-    useWaitForTransactionReceipt({
-      hash,
-    })
+        useWaitForTransactionReceipt({
+            hash,
+        })
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -76,36 +76,39 @@ export default function LockYourMeme() {
     };
 
     return (
-        <Card className="w-full max-w-md mx-auto">
-            <CardHeader>
-                <CardTitle>Lock Your Meme!</CardTitle>
-            </CardHeader>
-            <CardContent>
-                <form className="space-y-4" onSubmit={handleSubmit}>
-                    <div>
-                        <Label htmlFor="file">Select a file</Label>
-                        <Input
-                            id="file"
-                            type="file"
-                            onChange={(e) => setFile(e.target.files?.[0] || null)}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <Label htmlFor="unlockTime">Set unlock time</Label>
-                        <Input
-                            id="unlockTime"
-                            type="datetime-local"
-                            value={unlockTime}
-                            onChange={(e) => setUnlockTime(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <Button type="submit" disabled={isUploading || isPending || isConfirming}>
-                        {isUploading || isPending || isConfirming? 'Uploading...' : 'Upload File'}
-                    </Button>
-                </form>
-            </CardContent>
-        </Card>
+        <div>
+            <Navbar />
+            <Card className="w-full max-w-md mx-auto">
+                <CardHeader>
+                    <CardTitle>Lock Your Meme!</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <form className="space-y-4" onSubmit={handleSubmit}>
+                        <div>
+                            <Label htmlFor="file">Select a file</Label>
+                            <Input
+                                id="file"
+                                type="file"
+                                onChange={(e) => setFile(e.target.files?.[0] || null)}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <Label htmlFor="unlockTime">Set unlock time</Label>
+                            <Input
+                                id="unlockTime"
+                                type="datetime-local"
+                                value={unlockTime}
+                                onChange={(e) => setUnlockTime(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <Button type="submit" disabled={isUploading || isPending || isConfirming}>
+                            {isUploading || isPending || isConfirming ? 'Uploading...' : 'Upload File'}
+                        </Button>
+                    </form>
+                </CardContent>
+            </Card>
+        </div>
     );
 }

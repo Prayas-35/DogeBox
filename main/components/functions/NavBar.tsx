@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
 import { HiBarsArrowDown } from "react-icons/hi2";
+import { HiX } from "react-icons/hi";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
@@ -28,10 +29,11 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
           ? "bg-transparent backdrop-blur-md shadow-md"
           : "bg-transparent"
-        }`}
+      }`}
     >
       <div className="flex justify-between items-center gap-x-10 py-3 mx-2">
         <div className="flex flex-row items-center px-3 py-2">
@@ -50,11 +52,19 @@ export default function Navbar() {
           </Button>
         </div>
         <div className="flex md:hidden">
-          <button aria-label="Toggle menu">
-            <HiBarsArrowDown className="text-xl text-white" />
+          <button onClick={toggleMenu} aria-label="Toggle menu">
+            {isMenuOpen ? (
+              <HiX className="text-xl text-white" />
+            ) : (
+              <HiBarsArrowDown className="text-xl text-white" />
+            )}
           </button>
         </div>
-        <div className="hidden md:flex gap-6">
+        <div
+          className={`${
+            isMenuOpen ? "block" : "hidden"
+          } md:flex flex-col md:flex-row md:gap-6 absolute md:static top-14 left-0 right-0 bg-white md:bg-transparent z-40 md:z-auto p-4 md:p-0 shadow-md md:shadow-none`}
+        >
           <NavLink href="/">Home</NavLink>
           {account.address && <NavLink href="/collection">My NFTs</NavLink>}
           <NavLink href="/gallery">Explore</NavLink>

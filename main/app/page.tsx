@@ -5,8 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
-import { HiBarsArrowDown } from "react-icons/hi2";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 import React, { useEffect, useState } from "react";
 
 export default function Landing() {
@@ -96,7 +94,7 @@ export default function Landing() {
               <h3 className="text-xl font-bold">Timed Capsule</h3>
               <p className="text-gray-400">
                 Set a release date and let the countdown begin! Surprise the
-                future with today’s humor.
+                future with today&apos;s humor.
               </p>
             </Card>
           </div>

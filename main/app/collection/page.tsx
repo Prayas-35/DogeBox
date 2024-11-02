@@ -89,7 +89,7 @@ const Collection = () => {
 
   return (
     <div className="bg-gradient-to-b bg-[#0a1217] min-h-screen h-full flex justify-center items-center py-5">
-      <div className="w-[90%] h-full  bg-[#e7e9de] rounded-2xl p-3 shadow-lg">
+      <div className="w-[90%] h-full  bg-[#e7e9de] rounded-2xl py-3 shadow-lg">
         <Navbar />
         {collection ? (
           collection.length > 0 ? (

@@ -20,7 +20,7 @@ interface Meme {
 const Gallery = () => {
   return (
     <div className="bg-gradient-to-b bg-[#0a1217] min-h-screen h-full flex justify-center items-center py-5">
-      <div className="w-[90%] h-full bg-[#e7e9de] rounded-2xl p-3 shadow-lg">
+      <div className="w-[90%] h-full bg-[#e7e9de] rounded-2xl py-3 shadow-lg">
         <Navbar />
         <div className="flex flex-col items-center justify-center space-y-8 p-6">
           <h1 className="text-4xl font-extrabold sm:text-6xl bg-gradient-to-r from-red-950 to-orange-800 text-transparent bg-clip-text font-rubikwetpaint">

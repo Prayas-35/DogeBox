@@ -83,7 +83,7 @@ export default function LockYourMeme() {
 
   return (
     <div className="bg-gradient-to-b bg-[#0a1217] min-h-screen h-screen flex justify-center items-center py-5">
-      <div className="w-[90%] h-full bg-[#e7e9de] rounded-2xl p-3 shadow-lg">
+      <div className="w-[90%] h-full bg-[#e7e9de] rounded-2xl py-3 shadow-lg">
         <Navbar />
         <Card className="w-full max-w-md mx-auto border-4 border-slate-800 rounded-3xl font-indie mt-16 shadow-md bg-[#ee9256] space-y-3">
           <CardHeader className="text-center font-bold text-xl uppercase">

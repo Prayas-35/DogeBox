@@ -115,22 +115,24 @@ export default function LockYourMeme() {
                   required
                 />
               </div>
-              <button
-                className="px-8 py-2 rounded-full relative bg-slate-700 text-white text-sm hover:shadow-2xl hover:shadow-white/[0.1] transition duration-200 border border-slate-600"
-                type="submit"
-                disabled={isUploading || isPending || isConfirming}
-              >
-                <div className="absolute inset-x-0 h-px w-1/2 mx-auto -top-px shadow-2xl  bg-gradient-to-r from-transparent via-teal-500 to-transparent" />
-                <span className="relative z-20">
-                  {isUploading || isPending || isConfirming
-                    ? "Uploading..."
-                    : "Upload File"}
-                </span>
-              </button>
+              {/* Center the button */}
+              <div className="flex justify-center">
+                <button
+                  className="px-8 py-2 rounded-full relative bg-slate-700 text-white text-sm hover:shadow-2xl hover:shadow-white/[0.1] transition duration-200 border border-slate-600"
+                  type="submit"
+                  disabled={isUploading || isPending || isConfirming}
+                >
+                  <div className="absolute inset-x-0 h-px w-1/2 mx-auto -top-px shadow-2xl bg-gradient-to-r from-transparent via-teal-500 to-transparent" />
+                  <span className="relative z-20 text-base">
+                    {isUploading || isPending ? "Uploading..." : isConfirming ? "Minting..." : "Mint  !"}
+                  </span>
+                </button>
+              </div>
             </form>
           </CardContent>
         </Card>
       </div>
     </div>
   );
+
 }

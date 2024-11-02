@@ -11,9 +11,9 @@ export default function About() {
           {/* Header Section */}
           <section className="text-center space-y-2 font-ebgaramond">
             <p className="text-xl max-w-3xl mx-auto text-emerald-950">
-              "A place where your favorite memes are immortalized, locked, and
+              &quot; A place where your favorite memes are immortalized, locked, and
               loaded to be revealed in the future. MemeVault is not just a
-              collection but a time capsule of iconic internet culture."
+              collection but a time capsule of iconic internet culture.&quot;
             </p>
           </section>
 
@@ -87,7 +87,7 @@ export default function About() {
               We envision MemeVault as the ultimate archive of internet
               culture—a place where timeless humor and iconic moments are
               preserved for future generations. In an age where memes are
-              fleeting, we’re here to create a lasting digital legacy.
+              fleeting, we&apos;re here to create a lasting digital legacy.
             </p>
           </section>
 

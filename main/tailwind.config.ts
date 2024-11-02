@@ -76,6 +76,14 @@ const config: Config = {
           950: "var(--accent-950)",
         },
       },
+      fontFamily: {
+        dynapuff: ['"DynaPuff"', "cursive"],
+        ebgaramond: ['"EB Garamond"', "serif"],
+        indie: ['"Indie Flower"', "cursive"],
+        spicy: ['"Spicy Rice"', "cursive"],
+        rubikwetpaint: ['"Rubik Wet Paint"', "cursive"],
+        nostalgic: ["NostalgicWhispers", "sans-serif"],
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

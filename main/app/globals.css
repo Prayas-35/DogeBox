@@ -2,9 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "NostalgicWhispers";
+  src: url("/fonts/NostalgicWhispers-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@import url("https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Indie+Flower&family=Rubik+Wet+Paint&family=Spicy+Rice&display=swap");
 
 @layer base {
   :root {

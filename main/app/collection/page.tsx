@@ -92,7 +92,7 @@ const Collection = () => {
         <Navbar />
         {collection ? (
           collection.length > 0 ? (
-            <div className="flex flex-wrap gap-4 mt-10 mx-10 justify-between gap-y-8 mb-4">
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 mt-10 mx-10 justify-between gap-y-8 mb-4">
               {collection.map((meme) => (
                 <Card
                   key={meme.id}
@@ -112,8 +112,8 @@ const Collection = () => {
                       )}
                     </div>
                     <div className="p-4 flex-grow">
-                      <h2 className="text-xl font-bold mb-2">
-                        Time Left Until Unlock
+                      <h2 className="text-2xl font-bold mb-2 font-mono">
+                        Time Left Until Unlock:
                       </h2>
                       <div
                         className="flex text-3xl font-mono justify-between"

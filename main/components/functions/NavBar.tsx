@@ -28,11 +28,10 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
           ? "bg-transparent backdrop-blur-md shadow-md"
           : "bg-transparent"
-      }`}
+        }`}
     >
       <div className="flex justify-between items-center gap-x-10 py-3 mx-2">
         <div className="flex flex-row items-center px-3 py-2">
@@ -57,8 +56,8 @@ export default function Navbar() {
         </div>
         <div className="hidden md:flex gap-6">
           <NavLink href="/">Home</NavLink>
-          <NavLink href="/gallery">Explore</NavLink>
           {account.address && <NavLink href="/collection">My NFTs</NavLink>}
+          <NavLink href="/gallery">Explore</NavLink>
           <NavLink href="/about">About</NavLink>
         </div>
         <div className="py-2 mr-8">

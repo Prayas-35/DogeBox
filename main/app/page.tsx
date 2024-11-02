@@ -69,7 +69,7 @@ export default function Landing() {
 
               <Button
                 asChild
-                className="bg-cyan-950 text-white w-[40%] text-lg font-bold font-indie rounded-full"
+                className="bg-cyan-950 text-white w-[40%] text-lg font-bold font-indie rounded-full py-8"
               >
                 <Link href="/mint">Mint Your Meme</Link>
               </Button>

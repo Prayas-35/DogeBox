@@ -83,7 +83,7 @@ function NavLink({
   return (
     <Link
       href={href}
-      className="hover:text-primary text-lg px-3 py-2 rounded-md font-bold font-fredoka transition-colors duration-200 text-center hover:underline hover:bg-primary/10 text-background-900"
+      className="hover:text-primary font-spicy text-lg px-3 py-2 rounded-md font-bold font-fredoka transition-colors duration-200 text-center hover:underline hover:bg-primary/10 text-background-900"
     >
       {children}
     </Link>

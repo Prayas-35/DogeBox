@@ -29,23 +29,22 @@ const Collection = () => {
     args: [address],
   });
 
-  async function downloadFileFromPinata(cid: any) {
-    const url = `https://${GATEWAY}/ipfs/${cid}`;
-    const response = await fetch(url);
+  // async function downloadFileFromPinata(cid: any) {
+  //   const url = `https://${GATEWAY}/ipfs/${cid}`;
+  //   const response = await fetch(url);
 
-    if (!response.ok) {
-      throw new Error('Failed to download file');
-    }
+  //   if (!response.ok) {
+  //     throw new Error("Failed to download file");
+  //   }
 
-    const blob = await response.blob();
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = 'doge_meme'; // Set a default filename or use metadata to set it dynamically
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
-
+  //   const blob = await response.blob();
+  //   const link = document.createElement("a");
+  //   link.href = URL.createObjectURL(blob);
+  //   link.download = "doge_meme"; // Set a default filename or use metadata to set it dynamically
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  // }
 
   useEffect(() => {
     if (!collection) return;
@@ -116,14 +115,16 @@ const Collection = () => {
                       <h2 className="text-xl font-bold mb-2">
                         Time Left Until Unlock
                       </h2>
-                      <div className="flex text-3xl font-mono justify-between" aria-live="polite">
+                      <div
+                        className="flex text-3xl font-mono justify-between"
+                        aria-live="polite"
+                      >
                         {timeLeftMap[meme.id]}
 
-                        {timeLeftMap[meme.id] === "Unlocked" && (
+                        {/* {timeLeftMap[meme.id] === "Unlocked" && (
                           <Button variant="outline" className="text-xl border border-border" onClick={() => downloadFileFromPinata(meme.ipfsHash)}>Download</Button>
-                        )}
+                        )} */}
                       </div>
-
                     </div>
                   </CardContent>
                 </Card>

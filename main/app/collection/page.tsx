@@ -7,6 +7,7 @@ import { useAccount, useReadContract } from "wagmi";
 import abi, { contractAddress } from "@/app/abi";
 import Navbar from "@/components/functions/NavBar";
 import "dotenv/config";
+import { Button } from "@/components/ui/button";
 
 const GATEWAY = process.env.NEXT_PUBLIC_PINATA_GATEWAY;
 
@@ -69,19 +70,16 @@ const Collection = () => {
   }, [collection]);
 
   return (
-    <div>
-      <div>
+    <div className="bg-gradient-to-b bg-[#0a1217] min-h-screen h-full flex justify-center items-center py-5">
+      <div className="w-[90%] h-full bg-[#e7e9de] rounded-2xl p-3 shadow-lg">
         <Navbar />
-      </div>
-
-      <div>
         {collection ? (
           collection.length > 0 ? (
-            <div className="flex flex-wrap gap-4 ml-10">
+            <div className="flex flex-wrap gap-4 mt-10 mx-10 justify-between gap-y-8 mb-4">
               {collection.map((meme) => (
                 <Card
                   key={meme.id}
-                  className="w-full max-w-sm h-[400px] overflow-hidden flex flex-col"
+                  className="w-full max-w-sm h-[400px] overflow-hidden flex flex-col border-2 shadow-lg border-slate-800 rounded-3xl"
                 >
                   <CardContent className="p-0 flex-grow">
                     <div className="relative h-[250px]">
@@ -91,7 +89,7 @@ const Collection = () => {
                         className="w-full h-full object-cover"
                       />
                       {timeLeftMap[meme.id] !== "Unlocked" && (
-                        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur flex items-center justify-center">
                           <Lock className="text-white w-16 h-16" />
                         </div>
                       )}
@@ -103,6 +101,9 @@ const Collection = () => {
                       <p className="text-3xl font-mono" aria-live="polite">
                         {timeLeftMap[meme.id]}
                       </p>
+                      {/* {timeLeftMap[meme.id] === "Unlocked" && (
+                        <Button>Download</Button>
+                      )} */}
                     </div>
                   </CardContent>
                 </Card>

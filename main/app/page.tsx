@@ -69,7 +69,7 @@ export default function Landing() {
 
               <Button
                 asChild
-                className="bg-cyan-950 text-white w-[40%] text-lg font-bold font-indie"
+                className="bg-cyan-950 text-white w-[40%] text-lg font-bold font-indie rounded-full"
               >
                 <Link href="/mint">Mint Your Meme</Link>
               </Button>
@@ -105,28 +105,3 @@ export default function Landing() {
     </div>
   );
 }
-
-function NavLink({ href, children }) {
-  return (
-    <Link
-      href={href}
-      className="hover:text-primary px-3 py-2 rounded-md text-sm md:text-lg font-bold font-indie transition-colors duration-200 text-black hover:underline hover:bg-primary/10"
-    >
-      {children}
-    </Link>
-  );
-}
-
-//   <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-//     <p className="text-xs text-muted-foreground">
-//       © 2024 MemeVault. All rights reserved.
-//     </p>
-//     <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-//       <Link className="text-xs hover:underline underline-offset-4" href="#">
-//         Terms of Service
-//       </Link>
-//       <Link className="text-xs hover:underline underline-offset-4" href="#">
-//         Privacy
-//       </Link>
-//     </nav>
-//   </footer>

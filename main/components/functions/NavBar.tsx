@@ -4,11 +4,9 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
-import Image from "next/image";
-import { FiX } from "react-icons/fi";
-import { LuMenuSquare } from "react-icons/lu";
 import { HiBarsArrowDown } from "react-icons/hi2";
-import { ModeToggle } from "../theme/theme-switcher";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,19 +34,21 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="flex justify-between items-center gap-x-10 py-3">
+      <div className="flex justify-between items-center gap-x-10 py-3 mx-2">
         <div className="flex flex-row items-center px-3 py-2">
-          <Link href="/">
-            {/* <Image
-                src="/logo1-removebg-preview.png"
+          <Button asChild>
+            <Link href="/">
+              <Image
+                src="/dogefav.png"
                 alt="MemeVault Logo"
-                width={40}
-                height={50}
-              /> */}
-            <span className="font-extrabold text-black text-2xl dark:text-white pl-1 font-spicy uppercase">
-              MemeCrypt
-            </span>
-          </Link>
+                width={50}
+                height={60}
+              />
+              <span className="font-extrabold text-black text-3xl dark:text-white font-nostalgic">
+                DogeBox
+              </span>
+            </Link>
+          </Button>
         </div>
         <div className="flex md:hidden">
           <button aria-label="Toggle menu">
@@ -61,7 +61,7 @@ export default function Navbar() {
           {account.address && <NavLink href="/collection">My NFTs</NavLink>}
           <NavLink href="/about">About</NavLink>
         </div>
-        <div className="py-2 px-2">
+        <div className="py-2 mr-8">
           <ConnectButton
             label="Connect Wallet"
             accountStatus="avatar"
@@ -83,7 +83,7 @@ function NavLink({
   return (
     <Link
       href={href}
-      className="hover:text-primary px-3 py-2 rounded-md text-sm md:text-base font-bold font-fredoka transition-colors duration-200 text-center hover:underline hover:bg-primary/10 text-background-900"
+      className="hover:text-primary text-lg px-3 py-2 rounded-md font-bold font-fredoka transition-colors duration-200 text-center hover:underline hover:bg-primary/10 text-background-900"
     >
       {children}
     </Link>

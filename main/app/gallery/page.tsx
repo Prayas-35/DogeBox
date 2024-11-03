@@ -43,20 +43,35 @@ const Gallery = () => {
 
   async function downloadFileFromPinata(
     cid: string,
-    id: string,
+    creator: string,
     amount: number
   ) {
-    if (!address) {
-      alert("Please connect your wallet to download the meme");
-      return;
-    }
+    const tx = await writeContractAsync(
+      {
+        address: contractAddress,
+        abi,
+        functionName: "sendTokensToCreator",
+        args: [amount, account?.address, creator],
+      },
+      {
+        onSuccess(data) {
+          console.log("Transaction successful!", data);
+        },
+        onSettled(data, error) {
+          if (error) {
+            console.error("Error on settlement:", error);
+          } else {
+            console.log("Transaction settled:", data);
+          }
+        },
+        onError(error) {
+          console.error("Transaction error:", error);
+        },
+      }
+    );
 
-    const tx = await writeContractAsync({
-      address: contractAddress,
-      abi,
-      functionName: "sendTokensToCreator",
-      args: [id, BigInt(amount)],
-    });
+    const receipt = useWaitForTransactionReceipt({ hash: tx });
+    console.log("Transaction receipt: ", receipt);
 
     const url = `https://${GATEWAY}/ipfs/${cid}`;
     const response = await fetch(url);
@@ -140,7 +155,11 @@ const Gallery = () => {
                         className="relative inline-flex h-12 overflow-hidden rounded-full p-1 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 w-[50%] text-lg font-bold font-indie"
                         onClick={() => {
                           address
-                            ? downloadFileFromPinata(meme.ipfsHash, meme.id, 20)
+                            ? downloadFileFromPinata(
+                                meme.ipfsHash,
+                                meme.creator,
+                                20
+                              )
                             : alert(
                                 "Please connect your wallet to download the meme."
                               );

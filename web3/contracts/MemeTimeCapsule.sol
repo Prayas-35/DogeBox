@@ -85,23 +85,23 @@ contract MemeTimeCapsule is ERC721URIStorage {
         return ownedMemes;
     }
 
-    function sendTokensToCreator(uint256 tokenId, uint256 amount) public {
-        require(memes[tokenId].creator != address(0), "Meme does not exist");
-        require(
-            msg.sender != memes[tokenId].creator,
-            "Creator cannot pay themselves"
-        );
-        require(
-            amount >= 15 && amount <= 100,
-            "Amount must be between 15 and 100"
-        ); // Ensure valid amount
+    function sendTokensToCreator(
+        uint256 amount,
+        address from,
+        address to
+    ) public {
+        // Step 1: Check if amount is greater than 15
+        require(amount > 15, "Amount must be greater than 15");
 
-        address creator = memes[tokenId].creator;
+        // Step 2: Check if 'from' has enough balance and approved allowance
+        uint256 allowance = token.allowance(from, address(this));
+        require(allowance >= amount, "Insufficient allowance");
 
-        // Transfer tokens from msg.sender to the creator
-        require(
-            token.transferFrom(msg.sender, creator, amount),
-            "Token transfer failed"
-        );
+        uint256 balance = token.balanceOf(from);
+        require(balance >= amount, "Insufficient balance");
+
+        // Step 3: Transfer the tokens
+        bool success = token.transferFrom(from, to, amount);
+        require(success, "Token transfer failed");
     }
 }

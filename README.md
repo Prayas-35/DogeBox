@@ -2,7 +2,7 @@
 
 ## Overview
 
-### The Contract is deployed at the address `0x...` at AIA test Network. Check out the contract in the block explorer: [AIAScan]()
+### The Contract is deployed at the address `0x2d90B1bE9aeCF0dD009fF9DEe52a836A3Da5b802` at AIA test Network. Check out the contract in the block explorer: [AIAScan](https://testnet.aiascan.com/address/0x2d90B1bE9aeCF0dD009fF9DEe52a836A3Da5b802)
 
 DogeBox is a unique blockchain-based platform that allows users to immortalize and preserve their favorite memes as `NFTs`, locking them in a `digital time capsule` to be opened at a future date. By blending humor with technology, this project provides a way to preserve internet culture and meme history, capturing moments that resonate with audiences today for rediscovery tomorrow.
 

@@ -46,7 +46,7 @@ A gallery interface showcases unlocked memes, offering a nostalgic journey throu
 
 ### Deployment:
 
-`HardHat` for deploying the smart contract at AIA testnet. `Vercel` for deploying the client side of the project
+`HardHat` for deploying the smart contract at AIA testnet. `Vercel` for deploying the client side of the project.
 
 ## Usage
 

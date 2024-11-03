@@ -57,3 +57,11 @@ npm run dev
 Have fun navigating through our application. Cheers!
 
 We welcome contributions! Please fork the repository and submit a pull request.
+
+### Contributions
+We welcome contributions! Please follow the general contribution guidelines below and submit a pull request:
+
+1) Fork the repository.
+2) Create a new branch for your feature (`git checkout -b feature/new-feature`).
+3) Make your changes and test thoroughly.
+4) Push to your fork and create a pull request.

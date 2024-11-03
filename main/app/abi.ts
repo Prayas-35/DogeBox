@@ -538,6 +538,24 @@ const abi = [
   {
     inputs: [
       {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "sendTokensToCreator",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
         internalType: "address",
         name: "operator",
         type: "address",
@@ -580,6 +598,19 @@ const abi = [
         internalType: "string",
         name: "",
         type: "string",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "token",
+    outputs: [
+      {
+        internalType: "contract IERC20",
+        name: "",
+        type: "address",
       },
     ],
     stateMutability: "view",
@@ -629,7 +660,7 @@ const abi = [
   },
 ];
 
-const contractAddress = "0xD0831B5aaA16B3B8d8230518Ec7E2A64301f54AC";
+const contractAddress = "0xDA40603ed5f7ffC703d53d86f2ed5B8C08715571";
 
 export default abi;
 export { contractAddress };

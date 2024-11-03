@@ -3,7 +3,12 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Lock, AlertTriangle } from "lucide-react";
-import { useAccount, useReadContract } from "wagmi";
+import {
+  useAccount,
+  useReadContract,
+  useWaitForTransactionReceipt,
+  useWriteContract,
+} from "wagmi";
 import abi, { contractAddress } from "@/app/abi";
 import Navbar from "@/components/functions/NavBar";
 import "dotenv/config";
@@ -34,25 +39,39 @@ const Gallery = () => {
     args: [],
   });
 
-  async function downloadFileFromPinata(cid: any) {
-    if (address) {
-      const url = `https://${GATEWAY}/ipfs/${cid}`;
-      const response = await fetch(url);
+  const { data: hash, writeContractAsync } = useWriteContract();
 
-      if (!response.ok) {
-        throw new Error("Failed to download file");
-      }
-
-      const blob = await response.blob();
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = "dogebox_meme";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } else {
+  async function downloadFileFromPinata(
+    cid: string,
+    id: string,
+    amount: number
+  ) {
+    if (!address) {
       alert("Please connect your wallet to download the meme");
+      return;
     }
+
+    const tx = await writeContractAsync({
+      address: contractAddress,
+      abi,
+      functionName: "sendTokensToCreator",
+      args: [id, BigInt(amount)],
+    });
+
+    const url = `https://${GATEWAY}/ipfs/${cid}`;
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error("Failed to download file");
+    }
+
+    const blob = await response.blob();
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "dogebox_meme";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
   useEffect(() => {
@@ -121,7 +140,7 @@ const Gallery = () => {
                         className="relative inline-flex h-12 overflow-hidden rounded-full p-1 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 w-[50%] text-lg font-bold font-indie"
                         onClick={() => {
                           address
-                            ? downloadFileFromPinata(meme.ipfsHash)
+                            ? downloadFileFromPinata(meme.ipfsHash, meme.id, 20)
                             : alert(
                                 "Please connect your wallet to download the meme."
                               );

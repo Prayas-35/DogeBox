@@ -2,6 +2,7 @@
 pragma solidity ^0.8.27;
 
 import {ERC721URIStorage, ERC721} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract MemeTimeCapsule is ERC721URIStorage {
     struct Meme {
@@ -16,6 +17,8 @@ contract MemeTimeCapsule is ERC721URIStorage {
 
     uint256 private _nextTokenId = 0;
     mapping(uint256 => string) private _tokenURIs;
+
+    IERC20 public token; // ERC20 token contract
 
     constructor() ERC721("MemeTimeCapsule", "MTC") {}
 
@@ -80,5 +83,25 @@ contract MemeTimeCapsule is ERC721URIStorage {
         }
 
         return ownedMemes;
+    }
+
+    function sendTokensToCreator(uint256 tokenId, uint256 amount) public {
+        require(memes[tokenId].creator != address(0), "Meme does not exist");
+        require(
+            msg.sender != memes[tokenId].creator,
+            "Creator cannot pay themselves"
+        );
+        require(
+            amount >= 15 && amount <= 100,
+            "Amount must be between 15 and 100"
+        ); // Ensure valid amount
+
+        address creator = memes[tokenId].creator;
+
+        // Transfer tokens from msg.sender to the creator
+        require(
+            token.transferFrom(msg.sender, creator, amount),
+            "Token transfer failed"
+        );
     }
 }

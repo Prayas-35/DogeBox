@@ -5,4 +5,4 @@ deploy:
 	npx hardhat run ignition/modules/deploy.ts --network aia
 
 verify:
-	npx hardhat verify --network aia 0xD0831B5aaA16B3B8d8230518Ec7E2A64301f54AC
+	npx hardhat verify --network aia 0xDA40603ed5f7ffC703d53d86f2ed5B8C08715571

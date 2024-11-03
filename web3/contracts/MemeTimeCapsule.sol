@@ -2,7 +2,7 @@
 pragma solidity ^0.8.27;
 
 import {ERC721URIStorage, ERC721} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+// import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract MemeTimeCapsule is ERC721URIStorage {
     struct Meme {
@@ -17,8 +17,6 @@ contract MemeTimeCapsule is ERC721URIStorage {
 
     uint256 private _nextTokenId = 0;
     mapping(uint256 => string) private _tokenURIs;
-
-    IERC20 public token; // ERC20 token contract
 
     constructor() ERC721("MemeTimeCapsule", "MTC") {}
 
@@ -85,23 +83,32 @@ contract MemeTimeCapsule is ERC721URIStorage {
         return ownedMemes;
     }
 
-    function sendTokensToCreator(
-        uint256 amount,
-        address from,
-        address to
-    ) public {
-        // Step 1: Check if amount is greater than 15
-        require(amount > 15, "Amount must be greater than 15");
+    // function sendTokensToCreator(
+    //     uint256 amount,
+    //     address from,
+    //     address to
+    // ) public {
+    //     // Step 1: Check if amount is greater than 15
+    //     require(amount > 15, "Amount must be greater than 15");
 
-        // Step 2: Check if 'from' has enough balance and approved allowance
-        uint256 allowance = token.allowance(from, address(this));
-        require(allowance >= amount, "Insufficient allowance");
+    //     // Step 2: Check if 'from' has enough balance and approved allowance
+    //     uint256 allowance = token.allowance(from, address(this));
+    //     require(allowance >= amount, "Insufficient allowance");
 
-        uint256 balance = token.balanceOf(from);
-        require(balance >= amount, "Insufficient balance");
+    //     uint256 balance = token.balanceOf(from);
+    //     require(balance >= amount, "Insufficient balance");
 
-        // Step 3: Transfer the tokens
-        bool success = token.transferFrom(from, to, amount);
-        require(success, "Token transfer failed");
+    //     // Step 3: Transfer the tokens
+    //     bool success = token.transferFrom(from, to, amount);
+    //     require(success, "Token transfer failed");
+    // }
+    
+    function payOwner (address payable to) external payable {
+        require(to != address(0), "Invalid receiver address");
+        require(msg.value > 0, "Must send a non-zero amount");
+
+        // Transfer Ether to the specified address
+        (bool success, ) = to.call{value: msg.value}("");
+        require(success, "Ether transfer failed");
     }
 }

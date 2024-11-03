@@ -46,12 +46,17 @@ const Gallery = () => {
     creator: string,
     amount: number
   ) {
+    if (address === creator) {
+      alert("You are the owner of this meme.");
+      return;
+    }
     const tx = await writeContractAsync(
       {
         address: contractAddress,
         abi,
-        functionName: "sendTokensToCreator",
-        args: [amount, account?.address, creator],
+        functionName: "payOwner",
+        args: [creator],
+        value: BigInt(amount),
       },
       {
         onSuccess(data) {
@@ -69,9 +74,6 @@ const Gallery = () => {
         },
       }
     );
-
-    const receipt = useWaitForTransactionReceipt({ hash: tx });
-    console.log("Transaction receipt: ", receipt);
 
     const url = `https://${GATEWAY}/ipfs/${cid}`;
     const response = await fetch(url);

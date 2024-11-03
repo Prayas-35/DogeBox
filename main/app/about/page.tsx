@@ -12,7 +12,7 @@ export default function About() {
           <section className="text-center space-y-2 font-ebgaramond">
             <p className="text-xl max-w-3xl mx-auto text-emerald-950">
               &quot; A place where your favorite memes are immortalized, locked, and
-              loaded to be revealed in the future. MemeVault is not just a
+              loaded to be revealed in the future. DogeBox is not just a
               collection but a time capsule of iconic internet culture.&quot;
             </p>
           </section>
@@ -23,7 +23,7 @@ export default function About() {
               Our Mission
             </h2>
             <p>
-              MemeVault aims to create a unique platform that allows users to
+              DogeBox aims to create a unique platform that allows users to
               mint their favorite memes as NFTs and lock them in a digital time
               capsule, set to be revealed at a future date. Our mission is to
               preserve internet culture, create a sense of anticipation, and let
@@ -70,11 +70,11 @@ export default function About() {
               How It Works
             </h2>
             <p>
-              MemeVault is simple to use! Connect your wallet, upload your
+              DogeBox is simple to use! Connect your wallet, upload your
               favorite meme, and mint it as an NFT. Select a lock duration, and
               let the countdown begin. Once the timer expires, your meme will be
               revealed for everyone to see, forever immortalized in the
-              MemeVault.
+              DogeBox.
             </p>
           </section>
 
@@ -84,7 +84,7 @@ export default function About() {
               Our Vision
             </h2>
             <p>
-              We envision MemeVault as the ultimate archive of internet
+              We envision DogeBox as the ultimate archive of internet
               culture—a place where timeless humor and iconic moments are
               preserved for future generations. In an age where memes are
               fleeting, we&apos;re here to create a lasting digital legacy.

@@ -17,6 +17,7 @@ interface Meme {
   id: string;
   unlockTime: number;
   ipfsHash: string;
+  creator: string;
 }
 
 const Gallery = () => {
@@ -34,20 +35,24 @@ const Gallery = () => {
   });
 
   async function downloadFileFromPinata(cid: any) {
-    const url = `https://${GATEWAY}/ipfs/${cid}`;
-    const response = await fetch(url);
+    if (address) {
+      const url = `https://${GATEWAY}/ipfs/${cid}`;
+      const response = await fetch(url);
 
-    if (!response.ok) {
-      throw new Error("Failed to download file");
+      if (!response.ok) {
+        throw new Error("Failed to download file");
+      }
+
+      const blob = await response.blob();
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "dogebox_meme";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      alert("Please connect your wallet to download the meme");
     }
-
-    const blob = await response.blob();
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = "dogebox_meme";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   }
 
   useEffect(() => {
@@ -67,6 +72,14 @@ const Gallery = () => {
     };
   }, [collection, refetch]);
 
+  console.log("Collection: ", collection);
+
+  const [isRevealed, setIsRevealed] = useState(false);
+
+  const handleReveal = () => {
+    setIsRevealed(!isRevealed);
+  };
+
   return (
     <div className="bg-gradient-to-b bg-[#0a1217] min-h-screen h-full flex justify-center items-center py-5">
       <div className="w-[90%] h-full bg-[#e7e9de] rounded-2xl py-3 shadow-lg">
@@ -77,9 +90,9 @@ const Gallery = () => {
               {collection.map((meme) => (
                 <Card
                   key={meme.id}
-                  className="w-full max-w-sm h-[400px] overflow-hidden flex flex-col border-2 shadow-lg border-slate-800 rounded-3xl"
+                  className="w-full max-w-sm h-[400px] overflow-hidden flex flex-col  shadow-lg  rounded-3xl"
                 >
-                  <CardContent className="p-0 flex-grow space-y-10">
+                  <CardContent className="p-0 flex-grow space-y-4">
                     <div className="relative h-[250px]">
                       <img
                         src={`https://${GATEWAY}/ipfs/${meme.ipfsHash}`}
@@ -87,13 +100,32 @@ const Gallery = () => {
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <div className="flex flex-col items-center justify-center space-y-10 align-baseline bottom-0">
-                      {/* <p className="text-lg font-bold text-center mt-2">
-                        {meme.id}
-                      </p> */}
+                    <div className="flex flex-col items-center justify-center align-baseline bottom-0 gap-y-4">
+                      <span
+                        className={`font-bold font-rubikwetpaint text-center mt-2 ${
+                          isRevealed
+                            ? "text-gray-900 text-sm"
+                            : "text-cyan-800 text-base"
+                        }`}
+                        onClick={handleReveal}
+                        style={{
+                          cursor: "pointer",
+                          transition: "color 0.3s ease",
+                        }}
+                      >
+                        {isRevealed
+                          ? `Owner: ${meme.creator}`
+                          : "Tap to reveal owner"}
+                      </span>
                       <Button
                         className="relative inline-flex h-12 overflow-hidden rounded-full p-1 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 w-[50%] text-lg font-bold font-indie"
-                        onClick={() => downloadFileFromPinata(meme.ipfsHash)}
+                        onClick={() => {
+                          address
+                            ? downloadFileFromPinata(meme.ipfsHash)
+                            : alert(
+                                "Please connect your wallet to download the meme."
+                              );
+                        }}
                       >
                         {/* <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" /> */}
                         <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl uppercase">

@@ -8,6 +8,7 @@ contract MemeTimeCapsule is ERC721URIStorage {
         uint256 id;
         string ipfsHash;
         uint256 unlockTime;
+        address creator;
     }
 
     mapping(uint256 => Meme) public memes;
@@ -27,7 +28,7 @@ contract MemeTimeCapsule is ERC721URIStorage {
         _safeMint(to, tokenId);
         _setTokenURI(tokenId, ipfsHash);
         memeIds.push(tokenId);
-        memes[tokenId] = Meme(tokenId, ipfsHash, unlockTime);
+        memes[tokenId] = Meme(tokenId, ipfsHash, unlockTime, msg.sender);
 
         return tokenId;
     }

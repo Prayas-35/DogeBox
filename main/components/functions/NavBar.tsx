@@ -66,8 +66,8 @@ export default function Navbar() {
           } md:flex flex-col md:flex-row md:gap-6 absolute md:static top-14 left-0 right-0 bg-white md:bg-transparent z-40 md:z-auto p-4 md:p-0 shadow-md md:shadow-none`}
         >
           <NavLink href="/">Home</NavLink>
-          {account.address && <NavLink href="/collection">My NFTs</NavLink>}
           <NavLink href="/gallery">Explore</NavLink>
+          {account.address && <NavLink href="/collection">My Memes</NavLink>}
           <NavLink href="/about">About</NavLink>
         </div>
         <div className="py-2 mr-8">

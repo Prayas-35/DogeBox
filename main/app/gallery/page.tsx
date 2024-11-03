@@ -39,41 +39,40 @@ const Gallery = () => {
     args: [],
   });
 
-  const { data: hash, writeContractAsync } = useWriteContract();
+  // const { data: hash, writeContractAsync } = useWriteContract();
 
   async function downloadFileFromPinata(
     cid: string,
     creator: string,
     amount: number
   ) {
-    if (address === creator) {
-      alert("You are the owner of this meme.");
-      return;
-    }
-    const tx = await writeContractAsync(
-      {
-        address: contractAddress,
-        abi,
-        functionName: "payOwner",
-        args: [creator],
-        value: BigInt(amount),
-      },
-      {
-        onSuccess(data) {
-          console.log("Transaction successful!", data);
-        },
-        onSettled(data, error) {
-          if (error) {
-            console.error("Error on settlement:", error);
-          } else {
-            console.log("Transaction settled:", data);
-          }
-        },
-        onError(error) {
-          console.error("Transaction error:", error);
-        },
-      }
-    );
+    // if (address === creator) {
+    //   alert("You are the owner of this meme.");
+    //   return;
+    // }
+    // const tx = await writeContractAsync(
+    //   {
+    //     address: contractAddress,
+    //     abi,
+    //     functionName: "payOwner",
+    //     args: [creator]
+    //   },
+    //   {
+    //     onSuccess(data) {
+    //       console.log("Transaction successful!", data);
+    //     },
+    //     onSettled(data, error) {
+    //       if (error) {
+    //         console.error("Error on settlement:", error);
+    //       } else {
+    //         console.log("Transaction settled:", data);
+    //       }
+    //     },
+    //     onError(error) {
+    //       console.error("Transaction error:", error);
+    //     },
+    //   }
+    // );
 
     const url = `https://${GATEWAY}/ipfs/${cid}`;
     const response = await fetch(url);

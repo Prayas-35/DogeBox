@@ -105,10 +105,10 @@ contract MemeTimeCapsule is ERC721URIStorage {
     
     function payOwner (address payable to) external payable {
         require(to != address(0), "Invalid receiver address");
-        require(msg.value > 0, "Must send a non-zero amount");
+        // require(msg.value > 0, "Must send a non-zero amount");
 
         // Transfer Ether to the specified address
-        (bool success, ) = to.call{value: msg.value}("");
+        (bool success, ) = to.call{value: 20}("");
         require(success, "Ether transfer failed");
     }
 }

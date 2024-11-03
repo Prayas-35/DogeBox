@@ -23,3 +23,37 @@ Once a meme is unlocked, other users can download it by paying a small fee to th
 
 ### Public Gallery of Unlocked Memes
 A gallery interface showcases unlocked memes, offering a nostalgic journey through internet culture.
+
+## Tech Stack
+### Frontend:
+`Next.js`, `wagmi`, `RainbowKit UI`
+
+### Smart Contract:
+`Solidity` and `OpenZeppelin` for minting `NFTs`
+
+### File Storage:
+`IPFS (InterPlanetary File System)`
+
+### Deployment:
+`HardHat` for deploying the smart contract at AIA testnet. `Vercel` for deploying the client side of the project
+
+## Usage
+Although we have a publicly accessible URL at [DogeBox](https://doge-box.vercel.app), here's the guide for installation into your local machine by following these steps:
+
+Make sure you have `Node` and `npm` installed in your system, if not do it from [here](https://nodejs.org/en/download/prebuilt-installer)
+
+Clone this repository by running:
+```
+https://github.com/Prayas-35/DogeBox.git
+```
+
+Navigate to the repository and use the following commands:
+
+```
+cd main
+npm i
+npm run dev
+```
+Have fun navigating through our application. Cheers!
+
+We welcome contributions! Please fork the repository and submit a pull request.
